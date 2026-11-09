@@ -17,7 +17,7 @@ Official website for the Prodigy Racing Association (PRA) — a sim racing commu
 | `discord-link.html` | Discord invite splash |
 
 Schedules, standings, results, records, series details, and driver profiles all
-live in the [Phoenix Racing League Manager](https://phoenix-racing-league-manager.vercel.app/),
+live in the [Phoenix Racing League Manager](https://phoenixrlm.com/),
 which this site links out to. This repo holds the public-facing site only —
 five embed pages that duplicated the app (league stats, points standings,
 league records, the records document, and the spreadsheet viewer) were removed
