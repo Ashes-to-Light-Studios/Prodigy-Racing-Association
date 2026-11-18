@@ -45,6 +45,11 @@ jobs:
         continue-on-error: true
         run: python3 scripts/update_highlights.py _site/index.html
 
+      - name: Refresh the Watch band from YouTube and Twitch
+        # Same rule: a platform outage leaves the previous embeds in place.
+        continue-on-error: true
+        run: python3 scripts/update_watch.py _site/index.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -27,29 +27,10 @@ FEED_URL = "https://phoenixrlm.com/api/network"
 LEAGUE_URL = "https://phoenixrlm.com/prodigy-racing-association"
 NETWORK_URL = "https://phoenixrlm.com/network"
 SCHEDULE_URL = f"{LEAGUE_URL}/schedule"
-RECORDS_URL = "https://phoenixrlm.com/records?scope=league"
-PROFILE_URL = f"{LEAGUE_URL}/profile/{{slug}}"
-
-# League-wide all-time records. The hub works these out in the browser from the
-# raw league dump, so there is no feed to read at build time — update the values
-# and the date here when they change (source: the records page, scope = league).
-RECORDS_AS_OF = "November 18, 2026"
-RECORDS = (
-    {
-        "emoji": "🏆",
-        "label": "Most championships",
-        "name": "H0o0dlum",
-        "value": "10 titles",
-        "slug": "h0o0dlum",
-    },
-    {
-        "emoji": "🏁",
-        "label": "Most wins",
-        "name": "Mr_DigBrick",
-        "value": "40 wins",
-        "slug": "mr-digbrick",
-    },
-)
+# The hub renders the league records table itself, so the page embeds it rather
+# than copying values: the numbers stay current with no build step, and the
+# table keeps the hub's game, series and season filters.
+RECORDS_EMBED_URL = "https://phoenixrlm.com/embed/prodigy-racing-association/records"
 
 START = "<!-- highlights:auto:start -->"
 END = "<!-- highlights:auto:end -->"
@@ -230,20 +211,12 @@ def render_result(race: dict) -> str:
 
 
 def render_records() -> str:
-    cards = "".join(
-        f'<a class="record-card" href="{esc(PROFILE_URL.format(slug=record["slug"]))}"'
-        f' target="_blank" rel="noopener">'
-        f'<span class="record-label">{record["emoji"]} {esc(record["label"])}</span>'
-        f'<strong class="record-name">{esc(record["name"])}</strong>'
-        f'<span class="record-value">{esc(record["value"])}</span></a>'
-        for record in RECORDS
-    )
-
     return f"""      <h3 class="hl-subhead">League records</h3>
 
-      <div class="record-grid">{cards}</div>
-
-      <p class="record-note">All-time across every series and season · as of {esc(RECORDS_AS_OF)} · <a href="{esc(RECORDS_URL)}" target="_blank" rel="noopener">All records ↗</a></p>"""
+      <div class="record-embed">
+        <iframe src="{esc(RECORDS_EMBED_URL)}" title="Prodigy Racing Association — All-Time Records"
+                style="width:100%;height:720px;border:0" loading="lazy"></iframe>
+      </div>"""
 
 
 def render_block(feed: dict, generated_at: datetime) -> str:

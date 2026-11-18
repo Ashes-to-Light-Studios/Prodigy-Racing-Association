@@ -86,10 +86,27 @@ run refreshes it every three hours, and a push refreshes it on every deploy.
 If the hub is unreachable the step logs the failure and the page keeps its
 last rendered highlights.
 
+The records part of that block is the hub's own embed
+(`https://phoenixrlm.com/embed/prodigy-racing-association/records`), rendered
+server-side with the hub's game, series and season filters, so record holders
+stay current without a rebuild.
+
 Run it locally with:
 
 ```sh
 python3 scripts/update_highlights.py index.html
+```
+
+### Watch band
+
+`scripts/update_watch.py` embeds the newest upload from the YouTube channel
+(`@PRANetwork2`) and the latest clip from `twitch.tv/pra_network`. YouTube is
+read from the channel's public RSS feed. Twitch has no keyless REST endpoint,
+so the script uses the read-only GraphQL query the Twitch web player uses; if
+that ever changes the step fails and the previous embeds stay in place.
+
+```sh
+python3 scripts/update_watch.py index.html
 ```
 
 ### Updating the Site

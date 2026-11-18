@@ -870,45 +870,79 @@
   .hl-upcoming .up-name { font-size: 0.86rem; font-weight: 600; color: var(--ink-0); }
   .hl-upcoming .up-series { font-size: 0.74rem; color: var(--ink-2); }
 
-  .record-grid {
+  .record-embed iframe {
+    display: block;
+    width: 100%;
+    height: 720px;
+    border: 0;
+  }
+
+  /* ── Watch ─────────────────────────────────── */
+  .watch-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 18px;
   }
 
-  .record-card {
+  .watch-card {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 22px;
+    overflow: hidden;
     border: 1px solid var(--border);
     border-radius: var(--radius-card);
     background: var(--bg-surface);
-    transition: border-color 160ms ease, transform 160ms ease;
-  }
-  .record-card:hover {
-    border-color: rgba(244, 162, 40, 0.35);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow);
   }
 
-  .record-label {
+  .watch-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .watch-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .watch-body { display: flex; flex-direction: column; gap: 6px; padding: 20px; }
+
+  .watch-tag {
+    align-self: flex-start;
+    padding: 4px 10px;
+    border: 1px solid rgba(230, 57, 70, 0.28);
+    border-radius: 999px;
+    background: var(--accent-red-dim);
+    color: #ff7a84;
     font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent-gold);
   }
-  .record-name {
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+
+  .watch-tag-twitch {
+    border-color: rgba(145, 70, 255, 0.35);
+    background: rgba(145, 70, 255, 0.14);
+    color: #b795ff;
+  }
+
+  .watch-body h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin: 2px 0 0;
+    font-size: 1.02rem;
+    font-weight: 700;
+    line-height: 1.35;
     color: var(--ink-0);
   }
-  .record-value { font-size: 0.82rem; font-weight: 600; color: var(--ink-1); }
 
-  .record-note { margin: 14px 0 0; font-size: 0.78rem; color: var(--ink-2); }
-  .record-note a { font-weight: 600; color: var(--accent-cyan); }
-  .record-note a:hover { color: var(--ink-0); }
+  .watch-meta { margin: 0; font-size: 0.76rem; color: var(--ink-2); }
 
   .hl-foot {
     margin-top: 32px;
@@ -1212,6 +1246,10 @@
     .footer-brand { grid-column: 1 / -1; }
   }
 
+  @media (max-width: 1040px) {
+    .topbar-nav a { padding: 8px 10px; font-size: 0.84rem; }
+  }
+
   @media (max-width: 860px) {
     .topbar-nav, .topbar-actions { display: none; }
     .menu-toggle { display: inline-flex; }
@@ -1259,6 +1297,7 @@
 
     <div class="topbar-nav">
       <a href="#highlights">Highlights</a>
+      <a href="#watch">Watch</a>
       <a href="#about">About</a>
       <a href="#series">Where We Race</a>
       <a href="#community">Community</a>
@@ -1275,6 +1314,7 @@
 
   <div class="mobile-menu" id="mobile-menu">
     <a href="#highlights">📊 Highlights</a>
+    <a href="#watch">📺 Watch</a>
     <a href="#about">📌 About</a>
     <a href="#series">🎮 Where We Race</a>
     <a href="#community">💬 Community</a>
@@ -1365,7 +1405,7 @@
         <article class="hl-card float-up" style="animation-delay:120ms">
           <span class="hl-tag hl-tag-red">📅 Coming up</span>
           <h3>Next on the calendar</h3>
-          <ul class="hl-upcoming"><li><span class="up-date">Nov 19</span><span class="up-name">Arena Essex</span><span class="up-series">Off Road Series</span></li><li><span class="up-date">Dec 1</span><span class="up-name">Charlotte Motor Speedway Roval 2019</span><span class="up-series">IndyCar Series</span></li><li><span class="up-date">Dec 2</span><span class="up-name">Tsukuba Circuit</span><span class="up-series">MX5</span></li></ul>
+          <ul class="hl-upcoming"><li><span class="up-date">Nov 19</span><span class="up-name">Arena Essex</span><span class="up-series"></span></li><li><span class="up-date">Dec 1</span><span class="up-name">Charlotte Motor Speedway Roval 2019</span><span class="up-series">IndyCar Series</span></li><li><span class="up-date">Dec 2</span><span class="up-name">Tsukuba Circuit</span><span class="up-series">MX5</span></li></ul>
           <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/schedule" target="_blank" rel="noopener">Full schedule →</a>
         </article>
       </div>
@@ -1407,18 +1447,64 @@
 
       <h3 class="hl-subhead">League records</h3>
 
-      <div class="record-grid"><a class="record-card" href="https://phoenixrlm.com/prodigy-racing-association/profile/h0o0dlum" target="_blank" rel="noopener"><span class="record-label">🏆 Most championships</span><strong class="record-name">H0o0dlum</strong><span class="record-value">10 titles</span></a><a class="record-card" href="https://phoenixrlm.com/prodigy-racing-association/profile/mr-digbrick" target="_blank" rel="noopener"><span class="record-label">🏁 Most wins</span><strong class="record-name">Mr_DigBrick</strong><span class="record-value">40 wins</span></a></div>
-
-      <p class="record-note">All-time across every series and season · as of November 18, 2026 · <a href="https://phoenixrlm.com/records?scope=league" target="_blank" rel="noopener">All records ↗</a></p>
+      <div class="record-embed">
+        <iframe src="https://phoenixrlm.com/embed/prodigy-racing-association/records" title="Prodigy Racing Association — All-Time Records"
+                style="width:100%;height:720px;border:0" loading="lazy"></iframe>
+      </div>
 
       <div class="hl-foot">
-        <p class="hl-updated">Refreshed from the Stats Hub · November 18, 2026 at 3:38 UTC</p>
+        <p class="hl-updated">Refreshed from the Stats Hub · November 18, 2026 at 4:06 UTC</p>
         <div class="band-cta">
           <a class="btn btn-primary" href="https://phoenixrlm.com/prodigy-racing-association/standings" target="_blank" rel="noopener">🏆 Full standings</a>
           <a class="btn btn-ghost" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">📡 Network highlights</a>
         </div>
       </div>
       <!-- highlights:auto:end -->
+    </div>
+  </section>
+
+  <!-- ── Watch ────────────────────────────────── -->
+  <section class="band band-alt" id="watch">
+    <div class="wrap">
+      <div class="band-head">
+        <p class="eyebrow">Broadcasts</p>
+        <h2>Watch the racing.</h2>
+        <p class="lead">
+          Race nights go out live on the PRA Network channels. Here's the newest
+          upload and the latest clip, refreshed automatically as they're posted.
+        </p>
+      </div>
+
+      <!-- watch:auto:start -->
+      <div class="watch-grid">
+        <article class="watch-card">
+          <div class="watch-frame">
+            <iframe src="https://www.youtube.com/embed/wo5pvBTquBc" title="YouTube: Rocket Graphics &amp; Media Iron Man Late Model Stock Series | Season 5 | Week 6 | South Boston Speedway"
+                    loading="lazy" allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </div>
+          <div class="watch-body">
+            <span class="watch-tag">▶ YouTube · latest upload</span>
+            <h3>Rocket Graphics &amp; Media Iron Man Late Model Stock Series | Season 5 | Week 6 | South Boston Speedway</h3>
+            <p class="watch-meta">Nov 10, 2026</p>
+            <a class="hl-link" href="https://www.youtube.com/@PRANetwork2" target="_blank" rel="noopener">PRA Network 2 on YouTube →</a>
+          </div>
+        </article>
+
+        <article class="watch-card">
+          <div class="watch-frame">
+            <iframe src="https://clips.twitch.tv/embed?clip=QuaintDeliciousBarracudaAMPEnergy-1oG6NRLIEvzxZ3Sc&amp;parent=pra.phoenixrlm.com&amp;parent=localhost&amp;parent=127.0.0.1" title="Twitch clip: Scarlett Swooning | PRA Iowa IndyCar"
+                    loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="watch-body">
+            <span class="watch-tag watch-tag-twitch">🎮 Twitch · latest clip</span>
+            <h3>Scarlett Swooning | PRA Iowa IndyCar</h3>
+            <p class="watch-meta">30s · clipped Nov 14, 2026</p>
+            <a class="hl-link" href="https://www.twitch.tv/pra_network" target="_blank" rel="noopener">pra_network on Twitch →</a>
+          </div>
+        </article>
+      </div>
+      <!-- watch:auto:end -->
     </div>
   </section>
 
