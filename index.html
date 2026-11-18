@@ -870,6 +870,46 @@
   .hl-upcoming .up-name { font-size: 0.86rem; font-weight: 600; color: var(--ink-0); }
   .hl-upcoming .up-series { font-size: 0.74rem; color: var(--ink-2); }
 
+  .record-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+
+  .record-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    background: var(--bg-surface);
+    transition: border-color 160ms ease, transform 160ms ease;
+  }
+  .record-card:hover {
+    border-color: rgba(244, 162, 40, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .record-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+  }
+  .record-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink-0);
+  }
+  .record-value { font-size: 0.82rem; font-weight: 600; color: var(--ink-1); }
+
+  .record-note { margin: 14px 0 0; font-size: 0.78rem; color: var(--ink-2); }
+  .record-note a { font-weight: 600; color: var(--accent-cyan); }
+  .record-note a:hover { color: var(--ink-0); }
+
   .hl-foot {
     margin-top: 32px;
     display: flex;
@@ -1309,10 +1349,10 @@
       <div class="hl-grid">
         <article class="hl-card float-up">
           <span class="hl-tag hl-tag-gold">⭐ Driver of the Week</span>
-          <h3>Aaron Fontaine</h3>
-          <p class="hl-line">P1 from P1 at Sebring International Raceway International</p>
-          <p class="hl-sub">Sports Car Series · GT3 Series | Season 4 · Nov 14, 2026</p>
-          <ul class="hl-chips"><li>🏁 Led 20 of 22 laps</li><li>🔥 4 wins in a row</li></ul>
+          <h3>Bob Gangwer</h3>
+          <p class="hl-line">P2 from P8 at Auto Club Speedway</p>
+          <p class="hl-sub">IndyCar Series · IndyCar Series | Season 5 · Nov 17, 2026</p>
+          <ul class="hl-chips"><li>📈 Charged from P8 to P2</li><li>😲 Beat their Skill Rating rank by 6 places (8th of 9)</li><li>🧼 Clean race, 0 incidents</li></ul>
           <a class="hl-link" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">Why this drive won →</a>
         </article>
         <article class="hl-card float-up" style="animation-delay:60ms">
@@ -1335,6 +1375,16 @@
       <div class="result-grid">
         <article class="result-card float-up">
           <div class="result-head">
+            <h3>Auto Club Speedway</h3>
+            <span class="result-date">Nov 17</span>
+          </div>
+          <p class="result-meta">IndyCar Series · 9 starters · 75 laps · SoF 1543</p>
+          <ol class="podium"><li><span aria-hidden="true">🥇</span><span class="p-name">Matthew B Byrd</span><span class="p-note">12 led</span></li><li><span aria-hidden="true">🥈</span><span class="p-name">Bob Gangwer</span><span class="p-note">6 led</span></li><li><span aria-hidden="true">🥉</span><span class="p-name">Marty Vaneskahian</span><span class="p-note">1 led</span></li></ol>
+          <p class="awards">🚀 Hard Charger <strong>Bob Gangwer</strong> · 🦾 Iron Man <strong>Bob Gangwer</strong> · 😲 Biggest Upset <strong>Bob Gangwer</strong></p>
+          <a class="hl-link" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">Full results →</a>
+        </article>
+        <article class="result-card float-up">
+          <div class="result-head">
             <h3>Sebring International Raceway International</h3>
             <span class="result-date">Nov 14</span>
           </div>
@@ -1353,22 +1403,18 @@
           <p class="awards">🚀 Hard Charger <strong>Sparky</strong> · 😲 Biggest Upset <strong>Genshi</strong></p>
           <a class="hl-link" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">Full results →</a>
         </article>
-        <article class="result-card float-up">
-          <div class="result-head">
-            <h3>Iowa Speedway Oval - 2011</h3>
-            <span class="result-date">Nov 10</span>
-          </div>
-          <p class="result-meta">IndyCar Series · 10 starters · 125 laps · SoF 1539</p>
-          <ol class="podium"><li><span aria-hidden="true">🥇</span><span class="p-name">Mirabella Viscalli</span><span class="p-note">53 led</span></li><li><span aria-hidden="true">🥈</span><span class="p-name">Indica Scarlett</span><span class="p-note">45 led</span></li><li><span aria-hidden="true">🥉</span><span class="p-name">Annie Duncan</span><span class="p-note">3 led</span></li></ol>
-          <p class="awards">🧼 Clean Sweep <strong>Annie Duncan</strong> · 🦾 Iron Man <strong>Bob Gangwer</strong> · 🍀 Tough Luck Award <strong>Cam Messina</strong></p>
-          <a class="hl-link" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">Full results →</a>
-        </article>
       </div>
 
+      <h3 class="hl-subhead">League records</h3>
+
+      <div class="record-grid"><a class="record-card" href="https://phoenixrlm.com/prodigy-racing-association/profile/h0o0dlum" target="_blank" rel="noopener"><span class="record-label">🏆 Most championships</span><strong class="record-name">H0o0dlum</strong><span class="record-value">10 titles</span></a><a class="record-card" href="https://phoenixrlm.com/prodigy-racing-association/profile/mr-digbrick" target="_blank" rel="noopener"><span class="record-label">🏁 Most wins</span><strong class="record-name">Mr_DigBrick</strong><span class="record-value">40 wins</span></a></div>
+
+      <p class="record-note">All-time across every series and season · as of November 18, 2026 · <a href="https://phoenixrlm.com/records?scope=league" target="_blank" rel="noopener">All records ↗</a></p>
+
       <div class="hl-foot">
-        <p class="hl-updated">Refreshed from the Stats Hub · November 18, 2026 at 3:07 UTC</p>
+        <p class="hl-updated">Refreshed from the Stats Hub · November 18, 2026 at 3:38 UTC</p>
         <div class="band-cta">
-          <a class="btn btn-primary" href="https://phoenixrlm.com/prodigy-racing-association/standings" target="_blank" rel="noopener">🏆 Standings &amp; points</a>
+          <a class="btn btn-primary" href="https://phoenixrlm.com/prodigy-racing-association/standings" target="_blank" rel="noopener">🏆 Full standings</a>
           <a class="btn btn-ghost" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">📡 Network highlights</a>
         </div>
       </div>

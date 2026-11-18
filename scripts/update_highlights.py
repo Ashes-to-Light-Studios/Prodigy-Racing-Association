@@ -27,6 +27,29 @@ FEED_URL = "https://phoenixrlm.com/api/network"
 LEAGUE_URL = "https://phoenixrlm.com/prodigy-racing-association"
 NETWORK_URL = "https://phoenixrlm.com/network"
 SCHEDULE_URL = f"{LEAGUE_URL}/schedule"
+RECORDS_URL = "https://phoenixrlm.com/records?scope=league"
+PROFILE_URL = f"{LEAGUE_URL}/profile/{{slug}}"
+
+# League-wide all-time records. The hub works these out in the browser from the
+# raw league dump, so there is no feed to read at build time — update the values
+# and the date here when they change (source: the records page, scope = league).
+RECORDS_AS_OF = "November 18, 2026"
+RECORDS = (
+    {
+        "emoji": "🏆",
+        "label": "Most championships",
+        "name": "H0o0dlum",
+        "value": "10 titles",
+        "slug": "h0o0dlum",
+    },
+    {
+        "emoji": "🏁",
+        "label": "Most wins",
+        "name": "Mr_DigBrick",
+        "value": "40 wins",
+        "slug": "mr-digbrick",
+    },
+)
 
 START = "<!-- highlights:auto:start -->"
 END = "<!-- highlights:auto:end -->"
@@ -206,6 +229,23 @@ def render_result(race: dict) -> str:
         </article>"""
 
 
+def render_records() -> str:
+    cards = "".join(
+        f'<a class="record-card" href="{esc(PROFILE_URL.format(slug=record["slug"]))}"'
+        f' target="_blank" rel="noopener">'
+        f'<span class="record-label">{record["emoji"]} {esc(record["label"])}</span>'
+        f'<strong class="record-name">{esc(record["name"])}</strong>'
+        f'<span class="record-value">{esc(record["value"])}</span></a>'
+        for record in RECORDS
+    )
+
+    return f"""      <h3 class="hl-subhead">League records</h3>
+
+      <div class="record-grid">{cards}</div>
+
+      <p class="record-note">All-time across every series and season · as of {esc(RECORDS_AS_OF)} · <a href="{esc(RECORDS_URL)}" target="_blank" rel="noopener">All records ↗</a></p>"""
+
+
 def render_block(feed: dict, generated_at: datetime) -> str:
     driver = feed.get("driverOfTheWeek") or {}
     next_race = feed.get("nextRace") or {}
@@ -229,10 +269,12 @@ def render_block(feed: dict, generated_at: datetime) -> str:
 {result_cards}
       </div>
 
+{render_records()}
+
       <div class="hl-foot">
         <p class="hl-updated">Refreshed from the Stats Hub · {stamp}</p>
         <div class="band-cta">
-          <a class="btn btn-primary" href="{esc(LEAGUE_URL)}/standings" target="_blank" rel="noopener">🏆 Standings &amp; points</a>
+          <a class="btn btn-primary" href="{esc(LEAGUE_URL)}/standings" target="_blank" rel="noopener">🏆 Full standings</a>
           <a class="btn btn-ghost" href="{esc(NETWORK_URL)}" target="_blank" rel="noopener">📡 Network highlights</a>
         </div>
       </div>"""
