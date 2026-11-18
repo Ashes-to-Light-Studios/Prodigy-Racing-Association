@@ -75,6 +75,23 @@ apex `phoenixrlm.com`; this is a separate subdomain.
 GitHub redirects the old `ashes-to-light-studios.github.io/Prodigy-Racing-Association/`
 address to the custom domain, so existing links keep working.
 
+### Highlights refresh
+
+The home page's league-highlights block is generated from the stats hub's
+public feed (`https://phoenixrlm.com/api/network`). The feed sends no CORS
+headers, so the page cannot read it in the browser; instead the Pages workflow
+runs `scripts/update_highlights.py` against the built copy of `index.html`,
+rewriting only the region between the `highlights:auto` markers. A scheduled
+run refreshes it every three hours, and a push refreshes it on every deploy.
+If the hub is unreachable the step logs the failure and the page keeps its
+last rendered highlights.
+
+Run it locally with:
+
+```sh
+python3 scripts/update_highlights.py index.html
+```
+
 ### Updating the Site
 
 1. Edit the HTML files in this repository.

@@ -842,32 +842,33 @@
   }
   .awards strong { font-weight: 600; color: var(--ink-1); }
 
-  .hl-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1px;
-    margin-top: 30px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    background: var(--border);
-    overflow: hidden;
+  .hl-upcoming {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 18px 0 0;
+    padding: 0;
   }
 
-  .hl-stat { padding: 18px 14px; background: var(--bg-surface); text-align: center; }
-  .hl-stat strong {
-    display: block;
-    font-size: 1.45rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--ink-0);
+  .hl-upcoming li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
   }
-  .hl-stat span {
-    font-size: 0.7rem;
+
+  .hl-upcoming .up-date {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--ink-2);
+    color: var(--accent-cyan);
   }
+  .hl-upcoming .up-name { font-size: 0.86rem; font-weight: 600; color: var(--ink-0); }
+  .hl-upcoming .up-series { font-size: 0.74rem; color: var(--ink-2); }
 
   .hl-foot {
     margin-top: 32px;
@@ -1304,33 +1305,28 @@
         </p>
       </div>
 
+      <!-- highlights:auto:start -->
       <div class="hl-grid">
         <article class="hl-card float-up">
           <span class="hl-tag hl-tag-gold">⭐ Driver of the Week</span>
           <h3>Aaron Fontaine</h3>
-          <p class="hl-line">Won from pole at Sebring International Raceway International</p>
-          <p class="hl-sub">Sports Car Series · GT3 Series, Season 4 · Nov 14, 2026</p>
-          <ul class="hl-chips">
-            <li>🏁 Led 20 of 22 laps</li>
-            <li>🔥 4 wins in a row</li>
-          </ul>
-          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/iracing/sports-car-series/gt3-series-season-4/round-8" target="_blank" rel="noopener">Race results →</a>
+          <p class="hl-line">P1 from P1 at Sebring International Raceway International</p>
+          <p class="hl-sub">Sports Car Series · GT3 Series | Season 4 · Nov 14, 2026</p>
+          <ul class="hl-chips"><li>🏁 Led 20 of 22 laps</li><li>🔥 4 wins in a row</li></ul>
+          <a class="hl-link" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">Why this drive won →</a>
         </article>
-
         <article class="hl-card float-up" style="animation-delay:60ms">
           <span class="hl-tag">🏎️ Next on the grid</span>
           <h3>Autopolis - Shortcut Course</h3>
-          <p class="hl-line">Race 7 · Wednesday, November 18, 2026</p>
-          <p class="hl-sub">MX5 · Season 1 · Gran Turismo 7</p>
-          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/gran-turismo-7/mx5/season-1/round-7" target="_blank" rel="noopener">Race page →</a>
+          <p class="hl-line">Race 7 - Autopolis International Racing Course - Shortcut Course</p>
+          <p class="hl-sub">MX5 · Season 1 · Wednesday, November 18, 2026</p>
+          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association" target="_blank" rel="noopener">League dashboard →</a>
         </article>
-
         <article class="hl-card float-up" style="animation-delay:120ms">
-          <span class="hl-tag hl-tag-red">🏆 Championship leader</span>
-          <h3>Rodney Roberts</h3>
-          <p class="hl-line">7,735 points at the top of the all-games table</p>
-          <p class="hl-sub">Combined totals across every game, series and season</p>
-          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/standings" target="_blank" rel="noopener">Full standings →</a>
+          <span class="hl-tag hl-tag-red">📅 Coming up</span>
+          <h3>Next on the calendar</h3>
+          <ul class="hl-upcoming"><li><span class="up-date">Nov 19</span><span class="up-name">Arena Essex</span><span class="up-series">Off Road Series</span></li><li><span class="up-date">Dec 1</span><span class="up-name">Charlotte Motor Speedway Roval 2019</span><span class="up-series">IndyCar Series</span></li><li><span class="up-date">Dec 2</span><span class="up-name">Tsukuba Circuit</span><span class="up-series">MX5</span></li></ul>
+          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/schedule" target="_blank" rel="noopener">Full schedule →</a>
         </article>
       </div>
 
@@ -1343,69 +1339,40 @@
             <span class="result-date">Nov 14</span>
           </div>
           <p class="result-meta">Sports Car Series · 6 starters · 22 laps · SoF 1464</p>
-          <ol class="podium">
-            <li><span aria-hidden="true">🥇</span><span class="p-name">Aaron Fontaine</span><span class="p-note">20 led</span></li>
-            <li><span aria-hidden="true">🥈</span><span class="p-name">Matthew B Byrd</span><span class="p-note">+16.587</span></li>
-            <li><span aria-hidden="true">🥉</span><span class="p-name">Rodney Roberts</span><span class="p-note">2 led</span></li>
-          </ol>
-          <p class="awards">
-            🚀 Hard Charger <strong>Matthew B Byrd</strong> ·<br>
-            🧼 Clean Sweep <strong>Aaron Fontaine</strong>
-          </p>
-          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/iracing/sports-car-series/gt3-series-season-4/round-8" target="_blank" rel="noopener">Full results →</a>
+          <ol class="podium"><li><span aria-hidden="true">🥇</span><span class="p-name">Aaron Fontaine</span><span class="p-note">20 led</span></li><li><span aria-hidden="true">🥈</span><span class="p-name">Matthew B Byrd</span><span class="p-note">+16.587</span></li><li><span aria-hidden="true">🥉</span><span class="p-name">Rodney Roberts</span><span class="p-note">2 led</span></li></ol>
+          <p class="awards">🚀 Hard Charger <strong>Matthew B Byrd</strong> · 🧼 Clean Sweep <strong>Aaron Fontaine</strong> · 🦾 Iron Man <strong>Matthew B Byrd</strong></p>
+          <a class="hl-link" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">Full results →</a>
         </article>
-
-        <article class="result-card float-up" style="animation-delay:60ms">
+        <article class="result-card float-up">
           <div class="result-head">
             <h3>Suzuka Circuit</h3>
             <span class="result-date">Nov 11</span>
           </div>
           <p class="result-meta">International Sports Car Series · 12 starters · SoF 1487</p>
-          <ol class="podium">
-            <li><span aria-hidden="true">🥇</span><span class="p-name">VIP_Doodlebob</span><span class="p-note">from P1</span></li>
-            <li><span aria-hidden="true">🥈</span><span class="p-name">Sparky</span><span class="p-note">P6 → P2</span></li>
-            <li><span aria-hidden="true">🥉</span><span class="p-name">Alex MacDonald</span><span class="p-note">from P2</span></li>
-          </ol>
-          <p class="awards">
-            🚀 Hard Charger <strong>Sparky</strong> ·<br>
-            😲 Biggest Upset <strong>Genshi</strong>
-          </p>
-          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/gran-turismo-7/international-sports-car-series/season-6/round-7" target="_blank" rel="noopener">Full results →</a>
+          <ol class="podium"><li><span aria-hidden="true">🥇</span><span class="p-name">VIP_Doodlebob</span><span class="p-note">from P1</span></li><li><span aria-hidden="true">🥈</span><span class="p-name">Sparky</span><span class="p-note">P6 → P2</span></li><li><span aria-hidden="true">🥉</span><span class="p-name">Alex MacDonald</span><span class="p-note">from P2</span></li></ol>
+          <p class="awards">🚀 Hard Charger <strong>Sparky</strong> · 😲 Biggest Upset <strong>Genshi</strong></p>
+          <a class="hl-link" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">Full results →</a>
         </article>
-
-        <article class="result-card float-up" style="animation-delay:120ms">
+        <article class="result-card float-up">
           <div class="result-head">
             <h3>Iowa Speedway Oval - 2011</h3>
             <span class="result-date">Nov 10</span>
           </div>
           <p class="result-meta">IndyCar Series · 10 starters · 125 laps · SoF 1539</p>
-          <ol class="podium">
-            <li><span aria-hidden="true">🥇</span><span class="p-name">Mirabella Viscalli</span><span class="p-note">P4 → P1</span></li>
-            <li><span aria-hidden="true">🥈</span><span class="p-name">Indica Scarlett</span><span class="p-note">45 led</span></li>
-            <li><span aria-hidden="true">🥉</span><span class="p-name">Annie Duncan</span><span class="p-note">3 led</span></li>
-          </ol>
-          <p class="awards">
-            🧼 Clean Sweep <strong>Annie Duncan</strong> ·<br>
-            🦾 Iron Man <strong>Bob Gangwer</strong> · 🍀 Tough Luck <strong>Cam Messina</strong>
-          </p>
-          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/iracing/indycar-series/indycar-series-season-5/round-7" target="_blank" rel="noopener">Full results →</a>
+          <ol class="podium"><li><span aria-hidden="true">🥇</span><span class="p-name">Mirabella Viscalli</span><span class="p-note">53 led</span></li><li><span aria-hidden="true">🥈</span><span class="p-name">Indica Scarlett</span><span class="p-note">45 led</span></li><li><span aria-hidden="true">🥉</span><span class="p-name">Annie Duncan</span><span class="p-note">3 led</span></li></ol>
+          <p class="awards">🧼 Clean Sweep <strong>Annie Duncan</strong> · 🦾 Iron Man <strong>Bob Gangwer</strong> · 🍀 Tough Luck Award <strong>Cam Messina</strong></p>
+          <a class="hl-link" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">Full results →</a>
         </article>
       </div>
 
-      <div class="hl-stats">
-        <div class="hl-stat"><strong>577</strong><span>Drivers scored</span></div>
-        <div class="hl-stat"><strong>774</strong><span>Races run</span></div>
-        <div class="hl-stat"><strong>92</strong><span>Seasons</span></div>
-        <div class="hl-stat"><strong>13</strong><span>Teams</span></div>
-      </div>
-
       <div class="hl-foot">
-        <p class="hl-updated">Snapshot from the Stats Hub · November 18, 2026</p>
+        <p class="hl-updated">Refreshed from the Stats Hub · November 18, 2026 at 3:07 UTC</p>
         <div class="band-cta">
           <a class="btn btn-primary" href="https://phoenixrlm.com/prodigy-racing-association/standings" target="_blank" rel="noopener">🏆 Standings &amp; points</a>
           <a class="btn btn-ghost" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">📡 Network highlights</a>
         </div>
       </div>
+      <!-- highlights:auto:end -->
     </div>
   </section>
 

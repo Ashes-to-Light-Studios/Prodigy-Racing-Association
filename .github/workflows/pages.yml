@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - master
+  schedule:
+    # Refresh the home-page highlights from the stats hub every three hours.
+    - cron: '17 */3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -35,6 +38,12 @@ jobs:
           cp *.html *.png .nojekyll _site/
           cp CNAME _site/
           [ -d assets ] && cp -r assets _site/ || true
+
+      - name: Refresh highlights from the stats hub
+        # A hub outage should never block a deploy; the page keeps its last
+        # rendered highlights and this step simply reports the failure.
+        continue-on-error: true
+        run: python3 scripts/update_highlights.py _site/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
