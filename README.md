@@ -4,7 +4,9 @@ Official website for the Prodigy Racing Association (PRA) — a sim racing commu
 
 ## Live Site
 
-<https://aosjay13.github.io/pra/>
+<https://pra.phoenixrlm.com/> — served by GitHub Pages on a subdomain of the
+league's Phoenix Racing League Manager domain. The old
+`ashes-to-light-studios.github.io/Prodigy-Racing-Association/` address redirects here.
 
 ## Pages
 
@@ -48,7 +50,7 @@ on their own splash pages.
 
 ## Deployment
 
-The site is static HTML deployed via GitHub Pages. Every push to `master`
+The site is static HTML deployed via GitHub Pages. Every push to `main`
 triggers automatic deployment through the workflow in `.github/workflows/pages.yml`.
 
 ### Setup
@@ -57,9 +59,25 @@ triggers automatic deployment through the workflow in `.github/workflows/pages.y
 2. Under Build and deployment, set Source to **GitHub Actions**.
 3. Save.
 
+### Custom domain
+
+The site is served from <https://pra.phoenixrlm.com/>. The stats hub keeps the
+apex `phoenixrlm.com`; this is a separate subdomain.
+
+1. At the DNS provider for `phoenixrlm.com`, add a `CNAME` record for `pra`
+   pointing at `ashes-to-light-studios.github.io`. Leave the apex and `www`
+   records alone — they still point at the Phoenix Racing League Manager.
+2. In **Settings > Pages**, set Custom domain to `pra.phoenixrlm.com` and save.
+   The `CNAME` file in this repository keeps that setting in sync.
+3. Once GitHub has issued the certificate (usually a few minutes), tick
+   **Enforce HTTPS**.
+
+GitHub redirects the old `ashes-to-light-studios.github.io/Prodigy-Racing-Association/`
+address to the custom domain, so existing links keep working.
+
 ### Updating the Site
 
 1. Edit the HTML files in this repository.
-2. Commit and push to `master`.
+2. Commit and push to `main`.
 3. The Pages workflow deploys automatically.
-4. Verify at the live URL.
+4. Verify at <https://pra.phoenixrlm.com/>.

@@ -3,6 +3,7 @@ name: Deploy static site to Pages
 on:
   push:
     branches:
+      - main
       - master
   workflow_dispatch:
 
@@ -32,6 +33,7 @@ jobs:
         run: |
           mkdir _site
           cp *.html *.png .nojekyll _site/
+          cp CNAME _site/
           [ -d assets ] && cp -r assets _site/ || true
 
       - name: Upload artifact
