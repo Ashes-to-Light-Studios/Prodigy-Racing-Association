@@ -225,9 +225,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    /* Wider than the 1180px content column: the brand, six nav links and two
+       actions need ~1200px, and squeezing them wrapped the labels. */
+    max-width: 1240px;
   }
 
-  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
   .brand-mark {
     width: 38px;
@@ -252,6 +255,7 @@
     letter-spacing: 0.02em;
     line-height: 1.2;
     color: var(--ink-0);
+    white-space: nowrap;
   }
 
   .brand-tag {
@@ -271,6 +275,7 @@
     font-weight: 500;
     color: var(--ink-1);
     border: 1px solid transparent;
+    white-space: nowrap;
     transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
   }
 
@@ -280,7 +285,7 @@
   }
 
   .topbar-actions { display: flex; align-items: center; gap: 10px; }
-  .topbar-actions .btn { padding: 8px 16px; font-size: 0.85rem; }
+  .topbar-actions .btn { padding: 8px 16px; font-size: 0.85rem; white-space: nowrap; }
 
   .menu-toggle {
     display: none;
@@ -1246,12 +1251,24 @@
     .footer-brand { grid-column: 1 / -1; }
   }
 
-  @media (max-width: 1040px) {
-    .topbar-nav a { padding: 8px 10px; font-size: 0.84rem; }
+  @media (max-width: 1240px) {
+    .brand-name { font-size: 0.98rem; }
+    .topbar-nav a { padding: 8px 9px; font-size: 0.82rem; }
+    .topbar-actions .btn { padding: 8px 12px; font-size: 0.82rem; }
   }
 
-  @media (max-width: 860px) {
-    .topbar-nav, .topbar-actions { display: none; }
+  /* Drop the secondary hub button, then the whole action group, then the nav
+     itself — each step keeps what is left on one line instead of wrapping. */
+  @media (max-width: 1180px) {
+    .topbar-actions .btn-ghost { display: none; }
+  }
+
+  @media (max-width: 1020px) {
+    .topbar-actions { display: none; }
+  }
+
+  @media (max-width: 900px) {
+    .topbar-nav { display: none; }
     .menu-toggle { display: inline-flex; }
   }
 
