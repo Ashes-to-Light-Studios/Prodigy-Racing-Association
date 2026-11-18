@@ -666,6 +666,221 @@
     flex-shrink: 0;
   }
 
+  /* ── Stats hub highlights ──────────────────── */
+  .hl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .hl-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  .hl-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-red), var(--accent-cyan));
+  }
+
+  .hl-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-3px);
+  }
+
+  .hl-tag {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 16px;
+    padding: 5px 11px;
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    border-radius: 999px;
+    background: var(--accent-cyan-dim);
+    color: var(--accent-cyan);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hl-tag-gold {
+    border-color: rgba(244, 162, 40, 0.28);
+    background: rgba(244, 162, 40, 0.12);
+    color: var(--accent-gold);
+  }
+
+  .hl-tag-red {
+    border-color: rgba(230, 57, 70, 0.28);
+    background: var(--accent-red-dim);
+    color: #ff7a84;
+  }
+
+  .hl-card h3 {
+    margin: 0 0 6px;
+    font-size: 1.32rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ink-0);
+  }
+
+  .hl-line { margin: 0; font-size: 0.86rem; line-height: 1.5; color: var(--ink-1); }
+  .hl-sub { margin: 4px 0 0; font-size: 0.76rem; color: var(--ink-2); }
+
+  .hl-chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0 0;
+    padding: 0;
+  }
+
+  .hl-chips li {
+    padding: 6px 11px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-elevated);
+    font-size: 0.76rem;
+    color: var(--ink-1);
+  }
+
+  .hl-link {
+    margin-top: auto;
+    padding-top: 18px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    transition: color 140ms ease;
+  }
+  .hl-link:hover { color: var(--ink-0); }
+
+  .hl-subhead {
+    margin: 44px 0 16px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .result-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    background: var(--card);
+    transition: background 160ms ease, border-color 160ms ease;
+  }
+  .result-card:hover { background: var(--card-hover); border-color: var(--border-accent); }
+
+  .result-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .result-head h3 {
+    margin: 0;
+    font-size: 0.96rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    color: var(--ink-0);
+  }
+
+  .result-date {
+    flex-shrink: 0;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size: 0.7rem;
+    color: var(--ink-2);
+  }
+
+  .result-meta { margin: 4px 0 14px; font-size: 0.74rem; color: var(--ink-2); }
+
+  .podium { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 0; padding: 0; }
+  .podium li { display: flex; align-items: baseline; gap: 9px; font-size: 0.85rem; color: var(--ink-1); }
+  .podium .p-name {
+    min-width: 0;
+    font-weight: 600;
+    color: var(--ink-0);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .podium .p-note { margin-left: auto; flex-shrink: 0; font-size: 0.72rem; color: var(--ink-2); }
+
+  .awards {
+    margin: 14px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 0.74rem;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+  .awards strong { font-weight: 600; color: var(--ink-1); }
+
+  .hl-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px;
+    margin-top: 30px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    background: var(--border);
+    overflow: hidden;
+  }
+
+  .hl-stat { padding: 18px 14px; background: var(--bg-surface); text-align: center; }
+  .hl-stat strong {
+    display: block;
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink-0);
+  }
+  .hl-stat span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .hl-foot {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .hl-foot .band-cta { margin-top: 0; }
+
+  .hl-updated { margin: 0; font-size: 0.78rem; color: var(--ink-2); }
+
   .band-cta {
     margin-top: 34px;
     display: flex;
@@ -971,6 +1186,8 @@
     .band { padding: 64px 0; }
     .hero-cta .btn { width: 100%; }
     .channel-desc { display: none; }
+    .hl-foot { justify-content: center; text-align: center; }
+    .hl-foot .band-cta { width: 100%; justify-content: center; }
     .footer-top { grid-template-columns: 1fr; gap: 28px; }
   }
 
@@ -999,6 +1216,7 @@
     </a>
 
     <div class="topbar-nav">
+      <a href="#highlights">Highlights</a>
       <a href="#about">About</a>
       <a href="#series">Where We Race</a>
       <a href="#community">Community</a>
@@ -1014,6 +1232,7 @@
   </div>
 
   <div class="mobile-menu" id="mobile-menu">
+    <a href="#highlights">📊 Highlights</a>
     <a href="#about">📌 About</a>
     <a href="#series">🎮 Where We Race</a>
     <a href="#community">💬 Community</a>
@@ -1068,7 +1287,124 @@
         </a>
       </div>
 
-      <a class="scroll-cue" href="#about" aria-label="Scroll to About">⌄</a>
+      <a class="scroll-cue" href="#highlights" aria-label="Scroll to league highlights">⌄</a>
+    </div>
+  </section>
+
+  <!-- ── Stats hub highlights ─────────────────── -->
+  <section class="band" id="highlights">
+    <div class="wrap">
+      <div class="band-head">
+        <p class="eyebrow">Live from the Stats Hub</p>
+        <h2>Season highlights</h2>
+        <p class="lead">
+          Podiums, awards and the next green flag from the Phoenix Racing League
+          Manager — the same numbers our drivers see after every round.
+        </p>
+      </div>
+
+      <div class="hl-grid">
+        <article class="hl-card float-up">
+          <span class="hl-tag hl-tag-gold">⭐ Driver of the Week</span>
+          <h3>Aaron Fontaine</h3>
+          <p class="hl-line">Won from pole at Sebring International Raceway International</p>
+          <p class="hl-sub">Sports Car Series · GT3 Series, Season 4 · Nov 14, 2026</p>
+          <ul class="hl-chips">
+            <li>🏁 Led 20 of 22 laps</li>
+            <li>🔥 4 wins in a row</li>
+          </ul>
+          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/iracing/sports-car-series/gt3-series-season-4/round-8" target="_blank" rel="noopener">Race results →</a>
+        </article>
+
+        <article class="hl-card float-up" style="animation-delay:60ms">
+          <span class="hl-tag">🏎️ Next on the grid</span>
+          <h3>Autopolis - Shortcut Course</h3>
+          <p class="hl-line">Race 7 · Wednesday, November 18, 2026</p>
+          <p class="hl-sub">MX5 · Season 1 · Gran Turismo 7</p>
+          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/gran-turismo-7/mx5/season-1/round-7" target="_blank" rel="noopener">Race page →</a>
+        </article>
+
+        <article class="hl-card float-up" style="animation-delay:120ms">
+          <span class="hl-tag hl-tag-red">🏆 Championship leader</span>
+          <h3>Rodney Roberts</h3>
+          <p class="hl-line">7,735 points at the top of the all-games table</p>
+          <p class="hl-sub">Combined totals across every game, series and season</p>
+          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/standings" target="_blank" rel="noopener">Full standings →</a>
+        </article>
+      </div>
+
+      <h3 class="hl-subhead">Latest results</h3>
+
+      <div class="result-grid">
+        <article class="result-card float-up">
+          <div class="result-head">
+            <h3>Sebring International Raceway International</h3>
+            <span class="result-date">Nov 14</span>
+          </div>
+          <p class="result-meta">Sports Car Series · 6 starters · 22 laps · SoF 1464</p>
+          <ol class="podium">
+            <li><span aria-hidden="true">🥇</span><span class="p-name">Aaron Fontaine</span><span class="p-note">20 led</span></li>
+            <li><span aria-hidden="true">🥈</span><span class="p-name">Matthew B Byrd</span><span class="p-note">+16.587</span></li>
+            <li><span aria-hidden="true">🥉</span><span class="p-name">Rodney Roberts</span><span class="p-note">2 led</span></li>
+          </ol>
+          <p class="awards">
+            🚀 Hard Charger <strong>Matthew B Byrd</strong> ·<br>
+            🧼 Clean Sweep <strong>Aaron Fontaine</strong>
+          </p>
+          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/iracing/sports-car-series/gt3-series-season-4/round-8" target="_blank" rel="noopener">Full results →</a>
+        </article>
+
+        <article class="result-card float-up" style="animation-delay:60ms">
+          <div class="result-head">
+            <h3>Suzuka Circuit</h3>
+            <span class="result-date">Nov 11</span>
+          </div>
+          <p class="result-meta">International Sports Car Series · 12 starters · SoF 1487</p>
+          <ol class="podium">
+            <li><span aria-hidden="true">🥇</span><span class="p-name">VIP_Doodlebob</span><span class="p-note">from P1</span></li>
+            <li><span aria-hidden="true">🥈</span><span class="p-name">Sparky</span><span class="p-note">P6 → P2</span></li>
+            <li><span aria-hidden="true">🥉</span><span class="p-name">Alex MacDonald</span><span class="p-note">from P2</span></li>
+          </ol>
+          <p class="awards">
+            🚀 Hard Charger <strong>Sparky</strong> ·<br>
+            😲 Biggest Upset <strong>Genshi</strong>
+          </p>
+          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/gran-turismo-7/international-sports-car-series/season-6/round-7" target="_blank" rel="noopener">Full results →</a>
+        </article>
+
+        <article class="result-card float-up" style="animation-delay:120ms">
+          <div class="result-head">
+            <h3>Iowa Speedway Oval - 2011</h3>
+            <span class="result-date">Nov 10</span>
+          </div>
+          <p class="result-meta">IndyCar Series · 10 starters · 125 laps · SoF 1539</p>
+          <ol class="podium">
+            <li><span aria-hidden="true">🥇</span><span class="p-name">Mirabella Viscalli</span><span class="p-note">P4 → P1</span></li>
+            <li><span aria-hidden="true">🥈</span><span class="p-name">Indica Scarlett</span><span class="p-note">45 led</span></li>
+            <li><span aria-hidden="true">🥉</span><span class="p-name">Annie Duncan</span><span class="p-note">3 led</span></li>
+          </ol>
+          <p class="awards">
+            🧼 Clean Sweep <strong>Annie Duncan</strong> ·<br>
+            🦾 Iron Man <strong>Bob Gangwer</strong> · 🍀 Tough Luck <strong>Cam Messina</strong>
+          </p>
+          <a class="hl-link" href="https://phoenixrlm.com/prodigy-racing-association/races/iracing/indycar-series/indycar-series-season-5/round-7" target="_blank" rel="noopener">Full results →</a>
+        </article>
+      </div>
+
+      <div class="hl-stats">
+        <div class="hl-stat"><strong>577</strong><span>Drivers scored</span></div>
+        <div class="hl-stat"><strong>774</strong><span>Races run</span></div>
+        <div class="hl-stat"><strong>92</strong><span>Seasons</span></div>
+        <div class="hl-stat"><strong>13</strong><span>Teams</span></div>
+      </div>
+
+      <div class="hl-foot">
+        <p class="hl-updated">Snapshot from the Stats Hub · November 18, 2026</p>
+        <div class="band-cta">
+          <a class="btn btn-primary" href="https://phoenixrlm.com/prodigy-racing-association/standings" target="_blank" rel="noopener">🏆 Standings &amp; points</a>
+          <a class="btn btn-ghost" href="https://phoenixrlm.com/network" target="_blank" rel="noopener">📡 Network highlights</a>
+        </div>
+      </div>
     </div>
   </section>
 
